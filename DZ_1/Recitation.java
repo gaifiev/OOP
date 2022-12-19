@@ -1,6 +1,6 @@
 package DZ_1;
 
-public enum Recitation {
+public enum Recitation { // перечисление
     son,
     daughter,
     father,
