@@ -57,11 +57,4 @@ public class Relative {
         }
         return string;
     }
-
-    @Override
-    public String toString() {
-
-        return member1.getName() + " " + member1.getSurname() + getStringRecitation(relative) + " " +
-                member2.getName() + " " + member2.getSurname();
-    }
 }
