@@ -34,8 +34,8 @@ public class Human {
         this.name = name;
     }
 
-    public void setSecondName(String secondName) {
-        this.surname = secondName;
+    public void surname(String surname) {
+        this.surname = surname;
     }
 
     public void setGender(String gender) {
