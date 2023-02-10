@@ -3,20 +3,20 @@ class Event:
         self.events = dict()
         self.evID = 0
 
-    def addNewEvent(self, eventYear, eventMonth, eventDay,
-                    eventTime, eventType, eventDuration,
-                    eventDescription):
+    def add_new_event(self, eventYear, eventMonth, eventDay,
+                      eventTime, eventType, eventDuration,
+                      eventDescription):
         event = [eventYear, eventMonth, eventDay,
                  eventTime, eventType, eventDuration,
                  eventDescription]
         self.events[self.evID] = event
         self.evID += 1
 
-    def printEventsbyMonth(self, eventYear, eventMonth):
+    def print_events_month(self, eventYear, eventMonth):
         if len(self.events) == 0:
             print('События отсутствуют\n')
             return
-        print('{0} {1}'.format('События: ', self.getMonthNameByNumber
+        print('{0} {1}'.format('События: ', self.get_month_name_number
                                (
                                    month=eventMonth,
                                    year=eventYear
@@ -33,11 +33,11 @@ class Event:
                     print('Описание: {0}'.format(evlist[6]))
                     print('\n')
 
-    def printEventsbyDay(self, eventYear, eventMonth, eventDay):
+    def print_events_day(self, eventYear, eventMonth, eventDay):
         if len(self.events) == 0:
             print('События не найдены\n')
             return
-        print('{0} {1} {2}'.format('События: ', self.getMonthNameByNumber
+        print('{0} {1} {2}'.format('События: ', self.get_month_name_number
                                    (
                                        month=eventMonth, year=eventYear
                                    ),
@@ -53,7 +53,7 @@ class Event:
                     print('События: {0}'.format(evlist[6]))
                     print('\n')
 
-    def delEvent(self, eventYear, eventMonth, eventDay, eventTime, eventDuration):
+    def del_event(self, eventYear, eventMonth, eventDay, eventTime, eventDuration):
         if len(self.events) == 0:
             print('События не найдены\n')
             return
@@ -66,7 +66,7 @@ class Event:
                         print('Удалено')
                         break
 
-    def delEventByID(self, eventID):
+    def del_event_by_id(self, eventID):
         if len(self.events) == 0:
             print('События не найдены\n')
             return
@@ -76,19 +76,19 @@ class Event:
             print('Данный ID отсутствует')
 
     # Used for updating event in the user interface
-    def getEventByID(self, eventID):
+    def get_event_id(self, eventID):
         if self.events.get(eventID) == None:
             return 'ID события отсутствует'
         return list(self.events.get(eventID))
 
-    def updateEvent(self, eventID, evYear, evMonth, evDay, evTime, evType, evDuration, evDescription):
+    def change_event(self, eventID, evYear, evMonth, evDay, evTime, evType, evDuration, evDescription):
         if len(self.events) == 0:
             print('События не найдены\n')
             return
         self.events[eventID] = [evYear, evMonth, evDay,
                                 evTime, evType, evDuration, evDescription]
 
-    def updateEventByDay(self, eventYear, eventMonth, eventDay, eventTime, eventDuration):
+    def change_event_day(self, eventYear, eventMonth, eventDay, eventTime, eventDuration):
         if len(self.events) == 0:
             print('События не найдены\n')
             return
@@ -96,7 +96,7 @@ class Event:
             if isinstance(self.events.get(key), list):
                 evList = list(self.events.get(key))
                 if evList[0] == eventYear and evList[1] == eventMonth and evList[2] == eventDay:
-                    self.printEventsbyDay(eventYear, eventMonth, eventDay)
+                    self.print_events_day(eventYear, eventMonth, eventDay)
                     eventID = int(input('Введите ID события: '))
                     if key+1 == eventID:
                         evList[0] = int(input('Изменить год: '))
@@ -107,13 +107,13 @@ class Event:
                         evList[5] = str(input('Изменить продолжительность: '))
                         evList[6] = str(input('Изменить описание: '))
 
-    def getMonthNameByNumber(self, year, month):
+    def get_month_name_number(self, year, month):
         from Calendar import Calendar
         cal = Calendar()
-        cal.printMonth(month=month, year=year)
+        cal.print_month(month=month, year=year)
         return cal.months[month]
 
-    def getAllEventsDatesByMonth(self):
+    def get_all_events_dates_month(self):
         if len(self.events) == 0:
             print('События отсутствуют\n')
             return
@@ -124,7 +124,7 @@ class Event:
         for year, month in months:
             print('>> {0}/{1}\n'.format(year, month))
 
-    def getAllEventsDatesByDay(self):
+    def get_all_events_dates_day(self):
         if len(self.events) == 0:
             print('События отсутствуют\n')
             return
@@ -135,7 +135,7 @@ class Event:
         for year, month, day in months:
             print('>> {0}/{1}/{2}\n'.format(year, month, day))
 
-    def printAllEvents(self):
+    def print_all_events(self):
         if len(self.events) == 0:
             print('События отсутствуют\n')
             return
@@ -149,13 +149,5 @@ class Event:
             print('Описание: {0}'.format(evlist[6]))
             print('\n')
 
-    def isEmpty(self):
-        isEmpty = False
-        if len(self.events != 0):
-            isEmpty = False
-        else:
-            isEmpty = True
-        return isEmpty
-
-    def getEvents(self):
+    def get_events(self):
         return self.events

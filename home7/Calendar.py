@@ -1,5 +1,6 @@
 import Event
 
+
 class Calendar:
 
     def __init__(self):
@@ -51,7 +52,7 @@ class Calendar:
                     if self.weekDayStart == 7:
                         self.weekDayStart = 0
 
-    def calculateWeekDayStarts(self, lastDay, lastWeekDay):
+    def calculate_week_day_starts(self, lastDay, lastWeekDay):
         lastWD = 0
         monthRange = range(1, lastDay+1)
         lastWD = self.weekDays.index(lastWeekDay)
@@ -63,12 +64,12 @@ class Calendar:
             lastWD -= 1
         return lastWD+1
 
-    def printMonth(self, year, month):
+    def print_month(self, year, month):
         print('{0} {1}'.format(self.months.get(month), year).center(40, '-'))
         print(''.join(['{0:<6}'.format(weekDay) for weekDay in self.weekDays]))
         tempMonths = dict(self.calendar.get(year))
         tempDays = tuple(tempMonths.get(month))
-        self.weekDayStarts = self.calculateWeekDayStarts(
+        self.weekDayStarts = self.calculate_week_day_starts(
             tempDays[1], tempDays[0])
         if self.weekDayStarts == 7:
             self.weekDayStarts = 0
@@ -81,13 +82,13 @@ class Calendar:
                 self.weekDayStarts = 0
         print('\n')
 
-    def printYear(self, year):
+    def print_calendar_year(self, year):
         yearTemp = dict(self.calendar.get(year))
         print('{0}'.format(year).center(40, '='))
         for month in yearTemp.keys():
             monthTemp = tuple(yearTemp[month])
             print('{0}'.format(self.months.get(month).center(40, '~')))
-            self.weekDayStarts = self.calculateWeekDayStarts(
+            self.weekDayStarts = self.calculate_week_day_starts(
                 monthTemp[1], monthTemp[0])
             if self.weekDayStarts == 7:
                 self.weekDayStarts = 0

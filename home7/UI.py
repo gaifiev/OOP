@@ -2,6 +2,7 @@ from Calendar import Calendar
 from Event import Event
 import os
 
+
 class UserInterface:
 
     def __init__(self):
@@ -12,7 +13,7 @@ class UserInterface:
         self.year = int()
         self.eventID = int()
 
-    def clearConsole(self):
+    def clear_console(self):
         command = 'clear'
         if os.name in ('nt', 'dos'):  # If Machine is running on Windows, use cls
             command = 'cls'
@@ -29,78 +30,78 @@ class UserInterface:
         option = int(input('\nВыберите операцию: '))
 
         if option == 1:
-            self.printYear()
+            self.print_calendar_year()
         elif option == 2:
-            self.printMonth()
+            self.print_month()
         elif option == 3:
-            self.printAllEvents()
+            self.print_all_events()
         elif option == 4:
-            self.printMonthEvent()
+            self.print_month_event()
         elif option == 5:
-            self.printDayEvent()
+            self.print_day_event()
         elif option == 6:
             return
         else:
-            self.clearConsole()
+            self.clear_console()
             self.menu()
 
-    def eventMenu(self):
+    def event_menu(self):
         print('1 - Добавить новое событие?')
         print('2 - Изменить событие?')
         print('3 - Удалить событие?')
         print('0 - Главное меню')
         option = int(input('\n Выберите операцию: '))
         if option == 1:
-            self.addNewEvent()
+            self.add_new_event()
         elif option == 2:
-            self.updateEvent()
+            self.change_event()
         elif option == 3:
-            self.delEvent()
+            self.del_event()
         elif option == 0:
             self.menu()
 
-    def eventsMenu(self):
+    def events_menu(self):
         print('1 - Изменить событие?')
         print('0 - Главное меню')
         opt = int(input('\nВыберите операцию: '))
         if opt == 0:
             self.menu()
         elif opt == 1:
-            self.eventMenu()
+            self.event_menu()
         else:
             print(
                 'Некорректный ввод!')
-            self.eventsMenu()
+            self.events_menu()
 
-    def printYear(self):
+    def print_calendar_year(self):
         year = int(input('\nВведите год (1900 - 2033): \n'))
-        self.calendar.printYear(int(year))
-        self.backToMainMenu()
+        self.calendar.print_calendar_year(int(year))
+        self.main_menu()
 
-    def printMonth(self):
+    def print_month(self):
         year = int(input('\nВведите год (1900 - 2033): \n'))
         month = int(input('\nВведите месяц (1 - 12): \n'))
-        self.calendar.printMonth(int(year), int(month))
-        self.backToMainMenu()
+        self.calendar.print_month(int(year), int(month))
+        self.main_menu()
 
-    def printDayEvent(self):
-        self.events.getAllEventsDatesByDay()
+    def print_day_event(self):
+        self.events.get_all_events_dates_day()
         self.year = int(input('\nВведите год (1900 - 2033): \n'))
         self.month = int(input('\Введите месяц (1 - 12): \n'))
         self.day = int(input('\nВведите число: \n'))
-        self.events.printEventsbyDay(
+        self.events.print_events_day(
             int(self.year), int(self.month), int(self.day))
-        self.eventsMenu()
+        self.events_menu()
 
-    def printMonthEvent(self):
-        self.events.getAllEventsDatesByMonth()
+    def print_month_event(self):
+        self.events.get_all_events_dates_month()
         self.year = int(input('\nВведите год (1900 - 2033): \n'))
         self.month = int(input('\nВведите месяц (1 - 12): \n'))
-        self.events.printEventsbyMonth(int(self.year), int(self.month))
-        self.eventsMenu()
-        self.eventMenu()
+        self.events.print_events_month(int(self.year), int(self.month))
+        self.events_menu()
+        self.event_menu()
 
-    def addNewEvent(self):
+    def add_new_event(self):
         year = int(input('\nВведите год нового события (1900 - 2033): \n'))
         month = int(input('\nВведите месяц нового события (1 - 12): \n'))
         day = int(input('\nВведите день нового события: \n'))
@@ -109,15 +110,15 @@ class UserInterface:
         duration = str(
             input('\nВведите продолжитеьность нового события: \n'))
         descr = str(input('\nВведите описание нового события: \n'))
-        self.events.addNewEvent(eventYear=int(year), eventMonth=int(month),
-                                eventDay=int(day), eventTime=str(time), eventType=str(type),
-                                eventDuration=str(duration), eventDescription=str(descr))
+        self.events.add_new_event(eventYear=int(year), eventMonth=int(month),
+                                  eventDay=int(day), eventTime=str(time), eventType=str(type),
+                                  eventDuration=str(duration), eventDescription=str(descr))
         print('событие добавлено\n')
-        self.backToMainMenu()
+        self.main_menu()
 
-    def updateEvent(self):
+    def change_event(self):
         eventID = int(input('\nПожалуста введите ID события: '))
-        eventList = list(self.events.getEventByID(eventID))
+        eventList = list(self.events.get_event_id(eventID))
         print('1 - Изменить год, месяц или день?')
         print('2 - Изменить время?')
         print('3 - Изменить название?')
@@ -130,39 +131,39 @@ class UserInterface:
             year = int(input('\nВведите новый год (1900 - 2033): '))
             month = int(input('\nВведите новй месяц (1 - 12): '))
             day = int(input('\nВведите новый день: '))
-            self.events.updateEvent(eventID=eventID, evYear=year, evMonth=month,
-                                    evDay=day, evType=eventList[4], evTime=eventList[3],
-                                    evDuration=eventList[5], evDescription=eventList[6])
+            self.events.change_event(eventID=eventID, evYear=year, evMonth=month,
+                                     evDay=day, evType=eventList[4], evTime=eventList[3],
+                                     evDuration=eventList[5], evDescription=eventList[6])
             print('событие обновлено')
-            self.backToMainMenu()
+            self.main_menu()
         elif option == 2:
             time = str(input('\nВведите время: '))
-            self.events.updateEvent(eventID=eventID, evYear=eventList[0], evMonth=eventList[1],
-                                    evDay=eventList[2], evType=eventList[4], evTime=time,
-                                    evDuration=eventList[5], evDescription=eventList[6])
+            self.events.change_event(eventID=eventID, evYear=eventList[0], evMonth=eventList[1],
+                                     evDay=eventList[2], evType=eventList[4], evTime=time,
+                                     evDuration=eventList[5], evDescription=eventList[6])
             print('событие обновлено')
-            self.backToMainMenu()
+            self.main_menu()
         elif option == 3:
             type = str(input('\nВведите название: '))
-            self.events.updateEvent(eventID=eventID, evYear=eventList[0], evMonth=eventList[1],
-                                    evDay=eventList[2], evType=type, evTime=eventList[3],
-                                    evDuration=eventList[5], evDescription=eventList[6])
+            self.events.change_event(eventID=eventID, evYear=eventList[0], evMonth=eventList[1],
+                                     evDay=eventList[2], evType=type, evTime=eventList[3],
+                                     evDuration=eventList[5], evDescription=eventList[6])
             print('событие обновлено')
-            self.backToMainMenu()
+            self.main_menu()
         elif option == 4:
             duration = str(input('\nВведите описание: '))
-            self.events.updateEvent(eventID=eventID, evYear=eventList[0], evMonth=eventList[1],
-                                    evDay=eventList[2], evType=eventList[4], evTime=eventList[3],
-                                    evDuration=duration, evDescription=eventList[6])
+            self.events.change_event(eventID=eventID, evYear=eventList[0], evMonth=eventList[1],
+                                     evDay=eventList[2], evType=eventList[4], evTime=eventList[3],
+                                     evDuration=duration, evDescription=eventList[6])
             print('событие обновлено')
-            self.backToMainMenu()
+            self.main_menu()
         elif option == 5:
             description = str(input('\nВведите продолжительность: '))
-            self.events.updateEvent(eventID=eventID, evYear=eventList[0], evMonth=eventList[1],
-                                    evDay=eventList[2], evType=eventList[4], evTime=eventList[3],
-                                    evDuration=eventList[5], evDescription=description)
+            self.events.change_event(eventID=eventID, evYear=eventList[0], evMonth=eventList[1],
+                                     evDay=eventList[2], evType=eventList[4], evTime=eventList[3],
+                                     evDuration=eventList[5], evDescription=description)
             print('событие обновлено')
-            self.backToMainMenu()
+            self.main_menu()
         elif option == 6:
             year = int(input('\nВведите новый год (1900 - 2033): '))
             month = int(input('\nВведите новый месяц (1 - 12): '))
@@ -171,16 +172,16 @@ class UserInterface:
             type = str(input('\nПридумайте название события: '))
             duration = str(input('\nОпишите событие: '))
             description = str(input('\nВведите новую продолжительность: '))
-            self.events.updateEvent(eventID=eventID, evYear=year, evMonth=month, evDay=day,
-                                    evDescription=description, evDuration=duration,
-                                    evTime=time, evType=type)
+            self.events.change_event(eventID=eventID, evYear=year, evMonth=month, evDay=day,
+                                     evDescription=description, evDuration=duration,
+                                     evTime=time, evType=type)
             print('событие обновлено')
-            self.backToMainMenu()
+            self.main_menu()
         else:
-            self.backToMainMenu()
+            self.main_menu()
 
-    def printAllEvents(self):
-        if len(self.events.getEvents()) == 0:
+    def print_all_events(self):
+        if len(self.events.get_events()) == 0:
             print('Событие не обнаружено')
             print('Добавить новое событие?')
             print('\n1 - Да'
@@ -190,25 +191,25 @@ class UserInterface:
             if option == 0:
                 return self.menu()
             elif option == 1:
-                return self.addNewEvent()
+                return self.add_new_event()
             else:
-                self.backToMainMenu()
+                self.main_menu()
         else:
-            self.events.printAllEvents()
-            self.backToMainMenu()
+            self.events.print_all_events()
+            self.main_menu()
 
-    def delEvent(self):
-        self.events.printAllEvents()
+    def del_event(self):
+        self.events.print_all_events()
         eventID = int(input('для удаления введите ID события: '))
-        self.events.delEventByID(eventID)
-        self.backToMainMenu()
+        self.events.del_event_by_id(eventID)
+        self.main_menu()
 
-    def backToMainMenu(self):
+    def main_menu(self):
         print('0 - главное меню')
         userIn = int(input('\nВыберите операцию:\n'))
         if userIn == 0:
-            self.clearConsole()
+            self.clear_console()
             self.menu()
         else:
             print('некорректная операция\n')
-            self.backToMainMenu()
+            self.main_menu()
