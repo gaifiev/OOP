@@ -2,7 +2,6 @@ from Calendar import Calendar
 from Event import Event
 import os
 
-
 class UserInterface:
 
     def __init__(self):
