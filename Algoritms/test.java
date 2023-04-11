@@ -1,6 +1,6 @@
 package Algoritms;
 
-public class Reverse {
+public class test {
     public static void main(String[] args) {
 
         MyList1 myList1 = new MyList1();
