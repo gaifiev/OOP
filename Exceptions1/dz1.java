@@ -1,4 +1,4 @@
-package Exceptions;
+package Exceptions1;
 
 import java.util.*;
 
