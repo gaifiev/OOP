@@ -6,6 +6,7 @@ class Calendar:
     def __init__(self):
         self.events = {}
         self.calendar = dict()
+
         self.days = {
             1: range(1, 32), 2: range(1, 29), 3: range(1, 32),
             4: range(1, 31), 5: range(1, 32), 6: range(1, 31),

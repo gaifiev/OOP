@@ -46,7 +46,6 @@ public class ConsoleUI {
             presenter.print();
             db.close();
         }
-
     }
 
 }

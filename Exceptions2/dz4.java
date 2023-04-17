@@ -44,7 +44,7 @@ public class dz4 {
     public void ex1() {
         try {
             String[] strings = { "sadad", "dasdadsa" };
-            String strings1 = strings[1];
+            String strings1 = strings[5];
             test(strings1);
 
         } catch (IOException e) {

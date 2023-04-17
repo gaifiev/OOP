@@ -20,11 +20,12 @@ public class FileHandler implements Writable, Serializable {
     }
 
     @Override
-    public Object read() {
+    public Tree read() {
         // TODO Auto-generated method stub
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("home2/tree.txt"))) {
             return (Tree) objectInputStream.readObject();
         } catch (Exception ex) {
+            System.out.println("Ты шо поломал?");
             System.out.println(ex.getMessage());
         }
         return null;

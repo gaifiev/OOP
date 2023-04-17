@@ -10,6 +10,6 @@ public class Main {
         vendingMachine.addProduct(product2);
         vendingMachine.addProduct(product3);
 
-        System.out.println(vendingMachine.getProductByCost(100));
+        System.out.print(vendingMachine.getProductByCost(100));
     }
 }
