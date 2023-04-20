@@ -1,6 +1,3 @@
-import Event
-
-
 class Calendar:
 
     def __init__(self):
